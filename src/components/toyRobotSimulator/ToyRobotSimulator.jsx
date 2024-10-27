@@ -13,6 +13,7 @@ function ToyRobotSimulator() {
 
     let currentState = { ...state };
 
+    // Execute all the commands input at the same time
     commandList.forEach(command => {
       currentState = executeCommand(currentState, command);
     });

@@ -1,8 +1,75 @@
-# React + Vite
+# AZ Toy Robot Simulator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Running the project
 
-Currently, two official plugins are available:
+Install the dependencies...
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+```
+
+...then start the dev server:
+
+```bash
+npm run dev
+```
+
+Wait for the project to finish compiling, then navigate to [localhost:5173](http://localhost:5173).
+
+
+## Running the test
+
+Install the dependencies...
+
+```bash
+npm install
+```
+
+...then start the dev server:
+
+```bash
+npm test
+```
+
+## Test exampels
+
+### Example 1
+```bash
+PLACE 0,0,NORTH
+MOVE 
+REPORT
+```
+Expected robot position: 0,1,NORTH  
+
+### Example 2
+```bash
+PLACE 0,0,NORTH
+MOVE 
+MOVE
+RIGHT
+MOVE
+REPORT
+```
+Expected output: 1,2,EAST
+
+### Example 3
+```bash
+PLACE 0,0,SOUTH
+MOVE 
+MOVE
+REPORT
+```
+Expected output: 0,0,SOUTH
+
+### Example 4
+```bash
+PLACE 0,0,NORTH
+MOVE 
+MOVE
+RIGHT
+RIGHT
+MOVE
+MOVE
+REPORT
+```
+Expected output: 0,0,SOUTH

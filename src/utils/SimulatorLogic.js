@@ -4,14 +4,16 @@ import { COMMANDS, DIRECTIONS, DIRECTIONS_INDEX, TABLETOP_X_SIZE, TABLETOP_Y_SIZ
 export const executeCommand = (state, command) => {
   const [cmd, ...args] = command.trim().split(" ");
   
-  if (cmd === COMMANDS.PLACE) {
+  if (cmd.toUpperCase() === COMMANDS.PLACE) {
     const [x, y, facing] = args[0].split(",");
-    return placeRobot(state, parseInt(x), parseInt(y), facing);
+    if(!x || !y || !facing) return {...state, report: "ERROR: PLACE command must be in the format 'PLACE 0,0,NORTH'."}
+    return placeRobot(state, parseInt(x), parseInt(y), facing.toUpperCase());
   }
   
+  // If robot is not placed ignore all other commands
   if (!state.placed) return state;
   
-  switch (cmd) {
+  switch (cmd.toUpperCase()) {
     case COMMANDS.MOVE:
       return move(state);
     case COMMANDS.LEFT:
@@ -22,7 +24,7 @@ export const executeCommand = (state, command) => {
       const report = `Robot position: ${state.x},${state.y},${state.facing}`;
       return {...state, report };
     default:
-      return state;
+      return {...state, report: "ERROR: Invalid command."};
   }
 };
 
